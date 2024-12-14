@@ -41,7 +41,8 @@ class oui_db:
         
         else:
             print("%s not found at script's location. Downloading." % self.db_txt)
-            with requests.get(self.db_url, allow_redirects=False) as webdata:
+            headers = {"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:101.0) Gecko/20100101 Firefox/101.0"}
+            with requests.get(self.db_url, allow_redirects=False, headers=headers) as webdata:
                 open(self.db_txt, 'wb').write(webdata.content)
             return self.build_db()
 
